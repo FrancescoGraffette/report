@@ -1,26 +1,31 @@
 <?php
 
-namespace App\Filament\Admin\Resources\Services\Tables;
+namespace App\Filament\Admin\Resources\Clients\Tables;
 
 use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class ServicesTable
+class ClientsTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->defaultSort('name', 'asc')
-            ->searchPlaceholder('Cerca servizio')
-            ->emptyStateHeading('Nessun servizio')
-            ->emptyStateDescription('Aggiungi un servizio per iniziare.')
+            ->searchPlaceholder('Cerca cliente')
+            ->emptyStateHeading('Nessun cliente')
+            ->emptyStateDescription('Aggiungi un cliente per iniziare.')
             ->columns([
                 TextColumn::make('name')
-                    ->label('Nome servizio')
+                    ->label('Cliente')
                     ->searchable()
                     ->sortable(),
+
+                TextColumn::make('services.name')
+                    ->label('Servizi attivi')
+                    ->badge()
+                    ->placeholder('Nessun servizio attivo'),
             ])
             ->filters([])
             ->recordActionsColumnLabel('Azioni')
@@ -37,9 +42,9 @@ class ServicesTable
                     ->iconButton()
                     ->tooltip('Cancella')
                     ->requiresConfirmation()
-                    ->modalHeading('Cancella servizio')
+                    ->modalHeading('Cancella cliente')
                     ->modalDescription(
-                        'Il servizio verrà rimosso dagli elenchi attivi. '
+                        'Il cliente verrà rimosso dagli elenchi attivi. '
                         . 'I report storici resteranno conservati.'
                     )
                     ->modalSubmitActionLabel('Cancella')
