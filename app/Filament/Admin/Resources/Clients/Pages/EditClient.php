@@ -33,4 +33,10 @@ class EditClient extends EditRecord
                 ->modalCancelActionLabel('Annulla'),
         ];
     }
+
+    protected function getRedirectUrl(): string
+    {
+        return ClientResource::getUrl('index');
+    }
+
 }

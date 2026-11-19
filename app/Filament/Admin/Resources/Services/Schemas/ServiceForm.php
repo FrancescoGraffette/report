@@ -32,7 +32,7 @@ class ServiceForm
                                     return;
                                 }
 
-                                $query = Service::withTrashed()
+                                $query = Service::query()
                                     ->where(
                                         'normalized_name',
                                         mb_strtolower($name)

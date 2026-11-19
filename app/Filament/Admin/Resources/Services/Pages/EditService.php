@@ -33,4 +33,10 @@ class EditService extends EditRecord
                 ->modalCancelActionLabel('Annulla'),
         ];
     }
+
+    protected function getRedirectUrl(): string
+    {
+        return ServiceResource::getUrl('index');
+    }
+
 }
